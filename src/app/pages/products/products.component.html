@@ -1,0 +1,59 @@
+<div class="h-full w-full p-2">
+  <div class="h-full w-full max-w-5xl m-auto">
+    <div
+      class="flex-col md:flex-row w-full h-40 md:h-64 bg-[#1E262C] rounded-md shadow-xl flex mt-6"
+    >
+      <div class="hidden md:flex basis-1/2">
+        <ng-lottie
+          [options]="options"
+          class="m-auto h-full w-auto max-w-full"
+        ></ng-lottie>
+      </div>
+      <div class="basis-full md:basis-1/2 p-8">
+        <div class="flex w-full h-8 mt-2 m-auto">
+          <p class="text-[#d2d5d8] font-semibold text-2xl md:text-4xl m-auto">
+            {{ this.categoryId.toUpperCase() }}
+          </p>
+        </div>
+        <div class="flex w-full h-8 mt-1 md:mt-3 m-auto">
+          <p class="text-[#d2d5d8] italic text-lg m-auto">
+            {{descriptions[this.categoryId]}}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="flex w-full h-8 mt-8">
+      <p class="text-[#A6ADB5] font-semibold text-xl">Products</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-2 mt-2">
+      <div
+        class="w-full md:max-w-[16rem] h-64 bg-[#1E262C] rounded-md shadow-xl m-auto p-2 transition-all opacity-100 hover:opacity-90 hover:scale-105 hover:rotate-1 cursor-pointer" 
+        *ngFor="let product of this.getFilteredProducts()" [routerLink]="['/product-page', product.id]"
+      >
+        <div class="flex h-40 w-full bg-[#4f535617] rounded-md shadow-md">
+          <img [src]="product.image" alt="" class="h-40 w-40 m-auto" />
+        </div>
+        <div class="flex h-12 w-full">
+          <p class="text-[#A6ADB5] font-semibold text-md m-auto">
+            {{ product.name }}
+          </p>
+        </div>
+        <div class="flex h-6 w-full">
+          <p class="text-red-500 italic text-lg stroke m-auto line-through">
+            ${{
+              this.product
+                ? this.product.price
+                  ? (this.product.price * 1.3).toFixed(2)
+                  : 1
+                : ""
+            }}
+          </p>
+          <p class="text-[#A6ADB5] font-semibold text-2xl m-auto">
+            ${{ product.price }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+<div class="w-full h-18 bg-[#2E3E44] shadow-lg">
+  <div class="w-full max-w-5xl m-auto pl-6 pr-6">
+    <div class="h-16 w-fit inline-block">
+      <div
+        class="flex h-16 w-fit cursor-pointer hover:scale-105 transition-all"
+        [routerLink]="'/home'"
+      >
+        <img src="assets/pro10.png" alt="" class="h-12 w-auto m-auto" />
+      </div>
+    </div>
+
+    <div
+      class="hover:scale-105 transition-all cursor-pointer inline-block float-right h-16 w-fit"
+      [routerLink]="'/profile'"
+    >
+      <div class="flex w-fit h-16">
+        <div class="flex h-16 w-10">
+          <img src="assets/profile.png" alt="" class="h-5 w-5 invert m-auto" />
+        </div>
+        <div class="flex h-16 w-fit">
+          <p class="hidden md:block text-white font-semibold text-lg m-auto">
+            {{ global.user ? getFirstPartOfEmail() : "Log in" }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="w-0.5 h-10 bg-white opacity-20 m-auto inline-block float-right mt-3 mr-3 ml-2 md:ml-6"
+    ></div>
+
+    <div
+      class="hover:scale-105 transition-all cursor-pointer inline-block float-right h-16 w-fit"
+    >
+      <div class="flex w-fit h-16" [routerLink]="['/cart']">
+        <div class="flex h-16 w-10">
+          <img src="assets/cart.png" alt="" class="h-5 w-5 invert m-auto" />
+        </div>
+        <div class="flex h-16 w-fit">
+          <p class="hidden md:block text-white font-semibold text-lg m-auto">
+            Cart
+          </p>
+        </div>
+        <div class="absolute w-8 md:w-24">
+          <div
+            class="flex h-5 w-5 rounded-full bg-[#F7D663] ml-6 md:ml-20 mt-2"
+          >
+            <p class="text-black font-semibold text-sm m-auto">
+              {{ getTotalItemsInCart() }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="w-0.5 h-10 bg-white opacity-20 m-auto inline-block float-right mt-3 mr-3 ml-2 md:ml-6"
+    ></div>
+
+    <div
+      class="hover:scale-105 transition-all cursor-pointer inline-block float-right h-16 w-fit"
+      [routerLink]="['/products/discount']"
+    >
+      <div class="flex w-fit h-16">
+        <div class="flex h-16 w-10">
+          <img src="assets/discount.png" alt="" class="h-5 w-5 m-auto" />
+        </div>
+        <div class="flex h-16 w-fit">
+          <p
+            class="hidden md:block text-[#F7D663] font-semibold text-lg m-auto"
+          >
+            Discounts
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

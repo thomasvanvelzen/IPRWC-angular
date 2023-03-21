@@ -1,0 +1,67 @@
+<div class="h-screen w-fullflex flex-col">
+  <div class="flex w-full h-1/2 m-auto flex-col gap-8 mt-20 lg:mt-28">
+    <div class="flex w-11/12 max-w-md h-fit m-auto flex-col">
+      <img src="assets/pro10.png" alt="" class="w-64 h-auto m-auto" />
+    </div>
+
+    <div
+      class="flex w-11/12 max-w-md h-fit p-4 bg-[#1E262C] m-auto flex-col rounded-md gap-1 shadow-sm"
+    >
+      <p class="font-bold text-[#A6ADB5] text-xl m-auto mt-4">
+        {{ isLoggingIn ? "Login" : "Register" }}
+      </p>
+      <p class=" text-red-500 m-auto" >
+        {{ error }}
+      </p>
+      <p class="font-semibold mt-4 text-[#A6ADB5]">Email</p>
+      <input
+        type="email"
+        class="w-full text-white m-auto p-3 focus:outline-none bg-[#26323C] border-l-4 border-[#FFD66B] focus:font-semibold font-semibold autofill:bg-dark-input"
+        placeholder="Email"
+        [(ngModel)]="this.userCredentials.email"
+      />
+
+      <p class="font-semibold mt-2 text-[#A6ADB5]">Password</p>
+      <input
+        type="password"
+        class="w-full text-white m-auto p-3 focus:outline-none bg-[#26323C] border-l-4 border-[#FFD66B] font-semibold"
+        placeholder="Password"
+        [(ngModel)]="this.userCredentials.password"
+      />
+
+      <input *ngIf="!isLoggingIn"
+      type="password"
+      class="w-full text-white m-auto p-3 focus:outline-none bg-[#26323C] border-l-4 border-[#FFD66B] font-semibold"
+      placeholder="Confirm password"
+      [(ngModel)]="passwordConfirm"
+    />
+
+      <div
+        class="flex w-full h-fit rounded-full bg-[#FFD66B] p-2 mt-8 hover:scale-105 transition-all cursor-pointer"
+        (click)="this.handleFormSubmit()"
+      >
+        <p class="text-black font-bold m-auto tracking-widest text-lg">{{isLoggingIn ? "LOGIN" : "REGISTER"}}</p>
+      </div>
+      <p class="text-white mt-4" *ngIf="isLoggingIn">
+        Dont have an account yet?
+      </p>
+      <p class="text-white mt-4" *ngIf="!isLoggingIn">
+        Already have an account?
+      </p>
+      <p
+        class="text-[#FFD66B] italic font-semibold underline"
+        *ngIf="isLoggingIn"
+        (click)="toggleLogin()"
+      >
+        Sign up
+      </p>
+      <p
+        class="text-[#FFD66B] italic font-semibold underline"
+        *ngIf="!isLoggingIn"
+        (click)="toggleLogin()"
+      >
+        Login
+      </p>
+    </div>
+  </div>
+</div>

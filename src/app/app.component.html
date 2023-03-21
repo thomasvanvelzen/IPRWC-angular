@@ -1,0 +1,11 @@
+<div
+  class="min-h-[calc(100vh+4rem)] h-fit w-full bg-gradient-to-r from-[#232E38] via-light-background to-[#232E38]"
+>
+  <app-header></app-header>
+  <router-outlet></router-outlet>
+  <app-footer class="hidden md:block"></app-footer>
+  <div
+    class="snowflake absolute w-full h-full"
+    *ngFor="let i of [].constructor(100)"
+  ></div>
+</div>

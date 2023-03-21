@@ -1,0 +1,159 @@
+<div class="min-h-[calc(100vh-6rem)] h-fit w-full p-2">
+  <div class="h-fit w-full max-w-5xl m-auto flex mt-10 gap-2">
+    <div class="h-fit basis-3/5 bg-[#1E262C] rounded-md shadow-xl p-6">
+      <div class="flex w-full h-8 mt-4 ml-4">
+        <p class="text-[#A6ADB5] font-semibold text-xl">My bag</p>
+      </div>
+
+      <div
+        class="w-full h-28 bg-[#253038] rounded-md shadow-md p-2 mt-2 flex hover:brightness-110 transition-all duration-150"
+        *ngFor="let item of this.cart.shoppingCartWithProducts"
+      >
+        <div class="h-full p-0.5 basis-1/5">
+          <img
+            [src]="item.product.image"
+            alt=""
+            class="max-h-full max-w-[8rem]"
+          />
+        </div>
+        <div class="flex h-5/6 mt-4 ml-4 flex-col basis-2/5">
+          <div class="basis-1/2 w-full ml-4">
+            <p class="text-[#A6ADB5] font-semibold text-md">
+              {{ item.product.name }}
+            </p>
+          </div>
+          <div class="basis-1/2 w-full ml-4 flex">
+            <div class="w-fit h-full flex">
+              <div
+                class="w-7 h-7 bg-[#ffffff09] rounded-full flex m-auto ml-0 cursor-pointer hover:scale-105 transition-all"
+                (click)="this.removeItemFromCart(item)"
+              >
+                <p class="text-[#A6ADB5] font-semibold text-lg m-auto">-</p>
+              </div>
+              <div class="w-fit h-full p-2 m-auto ml-0">
+                <p class="text-[#A6ADB5] font-semibold text-lg">
+                  {{ item.quantity }}
+                </p>
+              </div>
+              <div
+                class="w-7 h-7 bg-[#ffffff09] rounded-full flex m-auto ml-0 cursor-pointer hover:scale-105 transition-all"
+                (click)="this.addItemToCart(item)"
+              >
+                <p class="text-[#A6ADB5] font-semibold text-lg m-auto">+</p>
+              </div>
+            </div>
+
+            <div
+              class="ml-8 w-fit h-full flex opacity-70"
+              (click)="this.removeItemFromCartCompletely(item)"
+            >
+              <img
+                src="assets/delete.svg"
+                alt=""
+                class="w-5 h-5 m-auto invert cursor-pointer hover:scale-105 transition-all"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="flex h-full basis-2/5">
+          <div class="h-fit w-2/3 min-w-fit m-auto" *ngIf="this.global.user">
+            <p class="text-[#da5151] font-semibold text-md line-through">
+              ${{ this.getIncreasedPrice(item) }}
+            </p>
+          </div>
+          <div class="h-fit w-full m-auto ml-4">
+            <p
+              class="text-[#A6ADB5] font-semibold text-md"
+              *ngIf="this.global.user"
+            >
+              ${{ this.getNormalPrice(item) }}
+            </p>
+            <p
+              class="text-[#A6ADB5] font-semibold text-md ml-10"
+              *ngIf="!this.global.user"
+            >
+              ${{ this.getIncreasedPrice(item) }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="h-fit basis-2/5 bg-[#1E262C] rounded-md shadow-xl p-6">
+      <div class="flex w-full h-8 mt-4 ml-4">
+        <div class="basis-1/2">
+          <p class="text-[#A6ADB5] font-semibold text-xl">Total</p>
+        </div>
+        <div class="basis-1/2">
+          <p
+            class="text-[#A6ADB5] font-semibold text-xl"
+            *ngIf="this.global.user"
+          >
+            ${{ this.getTotalPrice() }}
+          </p>
+          <p
+            class="text-[#A6ADB5] font-semibold text-xl"
+            *ngIf="!this.global.user"
+          >
+            ${{ this.getTotalPricePlusTenProcent() }}
+          </p>
+        </div>
+      </div>
+      <div class="flex w-11/12 h-0.5 mt-4 bg-[#A6ADB5] opacity-20 m-auto"></div>
+      <div class="flex w-full h-8 mt-4 ml-4">
+        <div class="basis-1/2">
+          <p class="text-[#A6ADB5] font-semibold text-lg">Subtotal</p>
+        </div>
+        <div class="basis-1/2">
+          <p class="text-[#A6ADB5] font-semibold text-lg">
+            ${{ this.getTotalPricePlusTenProcent() }}
+          </p>
+        </div>
+      </div>
+      <div class="flex w-full h-8 mt-2 ml-4">
+        <div class="basis-1/2">
+          <p class="text-[#A6ADB5] font-semibold text-lg">Delivery</p>
+        </div>
+        <div class="basis-1/2">
+          <p class="text-[#FFD66B] font-semibold text-lg">FREE</p>
+        </div>
+      </div>
+      <div class="flex w-full h-8 mt-2 ml-4">
+        <div class="basis-1/2">
+          <p class="text-[#A6ADB5] font-semibold text-lg">Discount</p>
+        </div>
+        <div class="basis-1/2">
+          <p
+            class="text-[#A6ADB5] font-semibold text-lg"
+            *ngIf="this.global.user"
+          >
+            ${{ this.getTenProcentOfTotalPrice() }}
+          </p>
+          <div
+            *ngIf="!this.global.user"
+            class="flex w-32 h-fit o bg-[#FFD66B] rounded-full shadow-lg transition-all opacity-100 hover:opacity-90 hover:scale-105 cursor-pointer p-0.5"
+            [routerLink]="['/login']"
+          >
+            <p class="text-[#000] font-bold text-md m-auto tracking-widest">
+              LOGIN
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="flex w-11/12 h-0.5 mt-4 bg-[#A6ADB5] opacity-20 m-auto"></div>
+      <div
+        class="flex w-full h-fit mt-8 m-auto bg-[#FFD66B] rounded-full shadow-lg transition-all opacity-100 hover:opacity-90 hover:scale-105 cursor-pointer p-2"
+      >
+        <p class="text-[#000] font-bold text-lg m-auto tracking-widest">
+          CHECKOUT
+        </p>
+      </div>
+      <div class="flex w-full h-8 mt-6 ml-4">
+        <p class="text-[#A6ADB5] font-semibold text-md">We accept:</p>
+      </div>
+      <div class="flex w-full h-fit mt-0 ml-2">
+        <img src="assets/payment.png" alt="" class="m-auto" />
+      </div>
+    </div>
+  </div>
+</div>

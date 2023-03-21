@@ -1,0 +1,116 @@
+<div class="h-screen w-fullflex flex-col">
+  <div class="flex w-full h-1/2 m-auto flex-col gap-8 mt-8 lg:mt-24">
+    <form
+      [formGroup]="profileForm"
+      class="w-11/12 max-w-3xl h-fit p-4 bg-[#1E262C] m-auto rounded-md gap-1 shadow-sm flex flex-col"
+    >
+      <p class="font-bold text-[#A6ADB5] text-xl m-auto mt-4">Profile page</p>
+
+      <p class="font-semibold text-[#A6ADB5] text-md p-4">
+        Shipping information
+      </p>
+
+      <div class="w-full h-fit p-4 pt-0 flex gap-8">
+        <div class="basis-1/2 flex-col">
+          <p class="font-semibold mt-2 text-[#A6ADB5]">First name</p>
+          <input
+            type="text"
+            class="w-full m-auto p-2 focus:outline-none bg-[#26323C] border-l-4 border-[#FFD66B] focus:font-semibold font-semibold text-[#a6adb5bb]"
+            placeholder="First name"
+            formControlName="firstName"
+            [(ngModel)]="profile.firstName"
+          />
+          <span
+            *ngIf="firstName && firstName.invalid && firstName.touched"
+            class="font-semibold text-[#e94b4b]"
+          >
+            First name is incorrect.</span
+          >
+          <p class="font-semibold mt-2 text-[#A6ADB5]">Last name</p>
+          <input
+            type="text"
+            class="w-full m-auto p-2 focus:outline-none bg-[#26323C] border-l-4 border-[#FFD66B] font-semibold text-[#a6adb5bb]"
+            placeholder="Last name"
+            formControlName="lastName"
+            [(ngModel)]="profile.lastName"
+          />
+          <span
+            *ngIf="lastName && lastName.invalid && lastName.touched"
+            class="font-semibold text-[#e94b4b]"
+          >
+            Last name is incorrect.</span
+          >
+        </div>
+        <div class="basis-1/2 flex-col">
+          <p class="font-semibold mt-2 text-[#A6ADB5]">Postal code</p>
+          <input
+            type="text"
+            class="w-full m-auto p-2 focus:outline-none bg-[#26323C] border-l-4 border-[#FFD66B] font-semibold text-[#a6adb5bb]"
+            placeholder="Postal code"
+            formControlName="postalCode"
+            [(ngModel)]="profile.postalCode"
+          />
+          <span
+            *ngIf="postalCode && postalCode.invalid && postalCode.touched"
+            class="font-semibold text-[#e94b4b]"
+          >
+            Postal code is incorrect.</span
+          >
+          <p class="font-semibold mt-2 text-[#A6ADB5]">City</p>
+          <input
+            type="text"
+            class="w-full m-auto p-2 focus:outline-none bg-[#26323C] border-l-4 border-[#FFD66B] font-semibold text-[#a6adb5bb]"
+            placeholder="City"
+            formControlName="city"
+            [(ngModel)]="profile.city"
+          />
+          <span
+            *ngIf="city && city.invalid && city.touched"
+            class="font-semibold text-[#e94b4b]"
+          >
+            City is incorrect.</span
+          >
+          <p class="font-semibold mt-2 text-[#A6ADB5]">House number</p>
+          <input
+            type="text"
+            class="w-full m-auto p-2 focus:outline-none bg-[#26323C] border-l-4 border-[#FFD66B] font-semibold text-[#a6adb5bb]"
+            placeholder="House number"
+            formControlName="houseNumber"
+            [(ngModel)]="profile.houseNumber"
+          />
+          <span
+            *ngIf="houseNumber && houseNumber.invalid && houseNumber.touched"
+            class="font-semibold text-[#e94b4b]"
+          >
+            House number is incorrect.</span
+          >
+        </div>
+      </div>
+      <button
+        class="flex w-1/2 m-auto h-fit rounded-full bg-[#FFD66B] p-2 mt-4 hover:scale-105 transition-all cursor-pointer disabled:grayscale disabled:cursor-not-allowed disabled:opacity-80"
+        (click)="updateProfile()"
+        [disabled]="profileForm.invalid"
+      >
+        <p class="text-black font-bold m-auto tracking-widest text-lg">SAVE</p>
+      </button>
+      <p class="font-semibold text-[#A6ADB5] text-md p-4">Actions</p>
+      <button
+        class="flex w-60 ml-3 h-fit rounded-full bg-[#FFD66B] p-1 mt-1 hover:scale-105 transition-all cursor-pointer"
+        (click)="('')"
+        [disabled]="profileForm.invalid"
+      >
+        <p class="text-black font-bold m-auto tracking-widest text-md">
+          CHANGE PASSWORD
+        </p>
+      </button>
+      <button
+        class="flex w-36 ml-3 h-fit rounded-full bg-[#FFD66B] p-1 mt-1 hover:scale-105 transition-all cursor-pointer"
+        (click)="logout()"
+      >
+        <p class="text-black font-bold m-auto tracking-widest text-md">
+          LOGOUT
+        </p>
+      </button>
+    </form>
+  </div>
+</div>

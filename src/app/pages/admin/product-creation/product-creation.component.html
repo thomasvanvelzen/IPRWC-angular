@@ -1,0 +1,81 @@
+<div class="h-full xl:h-[calc(100vh)] w-full bg-light-background flex flex-col p-2">
+  <div class="flex w-full h-fit m-auto flex-col xl:flex-row mt-8">
+    <div
+      class="flex w-full max-w-2xl h-fit p-4 bg-[#1E262C] m-auto flex-col rounded-md gap-1 shadow-sm"
+    >
+      <p class="font-bold text-[#A6ADB5] text-xl m-auto mt-4">
+        Product creation
+      </p>
+      <p class="font-semibold mt-4 text-[#A6ADB5]">Name</p>
+      <input
+        type="text"
+        class="w-full m-auto p-3 focus:outline-none bg-[#26323C] border-l-4 border-[#FFD66B] focus:font-semibold font-semibold text-white"
+        placeholder="Name"
+        [(ngModel)]="this.product.name"
+      />
+
+      <p class="font-semibold mt-2 text-[#A6ADB5]">Description</p>
+      <textarea
+        type=""
+        class="w-full h-28 m-auto p-3 focus:outline-none bg-[#26323C] border-l-4 border-[#FFD66B] text-white flex-wrap"
+        placeholder="Description"
+        [(ngModel)]="this.product.description"
+      ></textarea>
+
+      <p class="font-semibold mt-4 text-[#A6ADB5]">Price</p>
+      <input
+        type="text"
+        class="w-full m-auto p-3 focus:outline-none bg-[#26323C] border-l-4 border-[#FFD66B] focus:font-semibold font-semibold text-white"
+        placeholder="Price"
+        [(ngModel)]="this.product.price"
+      />
+
+      <p class="font-semibold mt-4 text-[#A6ADB5]">Image path</p>
+      <input
+        type="text"
+        class="w-full m-auto p-3 focus:outline-none bg-[#26323C] border-l-4 border-[#FFD66B] focus:font-semibold font-semibold text-white"
+        placeholder="Image path"
+        [(ngModel)]="this.product.image"
+      />
+
+      <p class="font-semibold mt-4 text-[#A6ADB5]">Category ID</p>
+      <input
+        type="text"
+        class="w-full m-auto p-3 focus:outline-none bg-[#26323C] border-l-4 border-[#FFD66B] focus:font-semibold font-semibold text-white"
+        placeholder="Category ID"
+        [(ngModel)]="this.product.category_id"
+      />
+
+      <div
+        class="flex w-full h-fit rounded-full bg-[#FFD66B] p-2 mt-8 hover:scale-105 transition-all cursor-pointer"
+        (click)="this.postProduct()"
+      >
+        <p class="text-black font-bold m-auto tracking-widest text-lg">
+          CREATE PRODUCT
+        </p>
+      </div>
+    </div>
+
+    <div class="w-full max-w-2xl h-full grid grid-cols-2 xl:grid-cols-3 gap-1 m-auto mt-8 xl:mt-0 overflow-y-scroll overflow-x-hidden max-h-[calc(100vh-8rem)] p-2">
+      <div
+        class="w-full min-w-[10rem] xl::max-w-[16rem] h-64 bg-[#1E262C] rounded-md shadow-xl m-auto p-2 transition-all opacity-100 hover:opacity-90 hover:scale-105 hover:rotate-1 cursor-pointer"
+        *ngFor="let product of this.global.products"
+      >
+        <div class="flex h-40 w-full bg-[#4f535617] rounded-md shadow-md">
+          <img [src]="product.image" alt="" class="h-40 w-40 m-auto" />
+        </div>
+        <div class="flex h-12 w-full">
+          <p class="text-[#A6ADB5] font-semibold text-md m-auto">
+            {{ product.name }}
+          </p>
+        </div>
+        <div class="flex h-6 w-full">
+          <p class="text-[#A6ADB5] font-semibold text-md m-auto">
+            ${{ product.price }}
+          </p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
