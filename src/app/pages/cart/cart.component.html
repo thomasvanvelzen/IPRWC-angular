@@ -4,6 +4,19 @@
       <div class="flex w-full h-8 mt-4 ml-4">
         <p class="text-[#A6ADB5] font-semibold text-xl">My bag</p>
       </div>
+      <div *ngIf="this.cart.shoppingCart.length === 0">
+        <div class="flex w-full h-8 mt-4 ml-4">
+          <p class="text-[#a6adb5de]">Your shopping cart is empty!</p>
+        </div>
+        <button
+          class="flex w-72 ml-3 h-fit rounded-full bg-[#FFD66B] p-1 mt-1 hover:scale-105 transition-all cursor-pointer"
+          [routerLink]="['/']"
+        >
+          <p class="text-black font-bold m-auto tracking-widest text-md">
+            CONTINUE SHOPPING
+          </p>
+        </button>
+      </div>
 
       <div
         class="w-full h-28 bg-[#253038] rounded-md shadow-md p-2 mt-2 flex hover:brightness-110 transition-all duration-150"
@@ -141,13 +154,14 @@
         </div>
       </div>
       <div class="flex w-11/12 h-0.5 mt-4 bg-[#A6ADB5] opacity-20 m-auto"></div>
-      <div
-        class="flex w-full h-fit mt-8 m-auto bg-[#FFD66B] rounded-full shadow-lg transition-all opacity-100 hover:opacity-90 hover:scale-105 cursor-pointer p-2"
+      <button
+        [disabled]="this.cart.shoppingCart.length === 0"
+        class="disabled:grayscale disabled:cursor-not-allowed flex w-full h-fit mt-8 m-auto bg-[#FFD66B] rounded-full shadow-lg transition-all opacity-100 hover:opacity-90 hover:scale-105 cursor-pointer p-2"
       >
         <p class="text-[#000] font-bold text-lg m-auto tracking-widest">
           CHECKOUT
         </p>
-      </div>
+      </button>
       <div class="flex w-full h-8 mt-6 ml-4">
         <p class="text-[#A6ADB5] font-semibold text-md">We accept:</p>
       </div>
