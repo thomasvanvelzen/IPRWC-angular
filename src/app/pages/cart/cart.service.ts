@@ -39,12 +39,14 @@ export class CartService {
   public addItemToCart(productId: number): void {
     const cart = this.shoppingCart$.getValue();
     const item = cart.find((item) => item.productId === productId);
+
     if (item) {
       item.quantity++;
     } else {
       cart.push({ productId, quantity: 1 });
-      this.shoppingCart$.next(cart);
     }
+
+    this.shoppingCart$.next(cart);
   }
 
   public removeItemFromCart(productId: number): void {
@@ -52,11 +54,9 @@ export class CartService {
     const item = cart.find((item) => item.productId === productId);
     if (item) {
       item.quantity--;
-      if (item.quantity === 0) {
-        this.shoppingCart$.next(
-          cart.filter((item) => item.productId !== productId)
-        );
-      }
+      if (item.quantity === 0)
+        return this.removeItemFromCartCompletely(productId);
+      this.shoppingCart$.next(cart);
     }
   }
 
