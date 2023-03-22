@@ -5,6 +5,12 @@
       class="w-11/12 max-w-3xl h-fit p-4 bg-[#1E262C] m-auto rounded-md gap-1 shadow-sm flex flex-col"
     >
       <p class="font-bold text-[#A6ADB5] text-xl m-auto mt-4">Profile page</p>
+      <p class="font-bold text-green-500 m-auto mt-4" *ngIf="success">
+        Profile successfully updated
+      </p>
+      <p class="font-bold text-red-600 m-auto mt-4" *ngIf="error">
+        {{ error }}
+      </p>
 
       <p class="font-semibold text-[#A6ADB5] text-md p-4">
         Shipping information
