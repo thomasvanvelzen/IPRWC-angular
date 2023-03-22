@@ -33,6 +33,12 @@ export class LoginComponent {
     this.isLoggingIn = !this.isLoggingIn;
   }
 
+  public onEnter(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.handleFormSubmit();
+    }
+  }
+
   public get error() {
     return this.loginService.error;
   }
