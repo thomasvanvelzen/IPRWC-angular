@@ -79,7 +79,6 @@ export class ProfileComponent {
   public getProfile() {
     this.service.getProfile().subscribe((profile) => {
       if (!profile) return;
-      console.log(profile);
       this.profile = profile;
     });
   }
