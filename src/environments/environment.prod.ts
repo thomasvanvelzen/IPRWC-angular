@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiURL: 'http://localhost:3001',
+  apiURL: 'https://longing-receipt-production.up.railway.app',
 };
