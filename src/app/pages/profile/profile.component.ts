@@ -87,7 +87,7 @@ export class ProfileComponent {
 
   public getProfile() {
     this.service.getProfile().subscribe((profile) => {
-      if (!profile) return;
+      if (!profile) return this.logout();
       this.profile = profile;
     });
   }

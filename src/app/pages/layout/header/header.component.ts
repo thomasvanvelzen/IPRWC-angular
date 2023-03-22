@@ -8,14 +8,27 @@ import { GlobalService } from '../../../services/global.service';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {
+  public userName: string = 'Log in';
+
   constructor(
     private router: Router,
     private cart: CartService,
     public global: GlobalService
-  ) {}
+  ) {
+    this.global.user$.subscribe((user) => {
+      if (user) {
+        this.userName = this.getFirstPartOfEmail();
+      } else {
+        this.userName = 'Log in';
+      }
+    });
+  }
 
   public getTotalItemsInCart(): number {
-    return this.cart.shoppingCart.reduce((a, b) => a + b.quantity, 0);
+    return this.cart.shoppingCartWithProducts.reduce(
+      (a, b) => a + b.quantity,
+      0
+    );
   }
 
   getFirstPartOfEmail(): string {

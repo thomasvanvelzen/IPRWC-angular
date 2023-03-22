@@ -4,7 +4,7 @@
       <div class="flex w-full h-8 mt-4 ml-4">
         <p class="text-[#A6ADB5] font-semibold text-xl">My bag</p>
       </div>
-      <div *ngIf="this.cart.shoppingCart.length === 0">
+      <div *ngIf="isCartEmpty()">
         <div class="flex w-full h-8 mt-4 ml-4">
           <p class="text-[#a6adb5de]">Your shopping cart is empty!</p>
         </div>
@@ -155,7 +155,7 @@
       </div>
       <div class="flex w-11/12 h-0.5 mt-4 bg-[#A6ADB5] opacity-20 m-auto"></div>
       <button
-        [disabled]="this.cart.shoppingCart.length === 0"
+        [disabled]="isCartEmpty()"
         class="disabled:grayscale disabled:cursor-not-allowed flex w-full h-fit mt-8 m-auto bg-[#FFD66B] rounded-full shadow-lg transition-all opacity-100 hover:opacity-90 hover:scale-105 cursor-pointer p-2"
       >
         <p class="text-[#000] font-bold text-lg m-auto tracking-widest">

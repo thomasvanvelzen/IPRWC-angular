@@ -54,4 +54,15 @@ export class CartComponent implements OnInit {
       parseFloat(this.getTenProcentOfTotalPrice())
     ).toFixed(2);
   }
+
+  public getTotalItemsInCart(): number {
+    return this.cart.shoppingCartWithProducts.reduce(
+      (a, b) => a + b.quantity,
+      0
+    );
+  }
+
+  public isCartEmpty(): boolean {
+    return this.getTotalItemsInCart() === 0;
+  }
 }

@@ -10,7 +10,9 @@ import { TokenService } from 'src/app/services/token.service';
 })
 @Injectable()
 export class ProfileService {
-  constructor(private http: HttpClient, private token: TokenService) {}
+  constructor(private http: HttpClient, private token: TokenService) {
+    this.getProfile();
+  }
 
   public updateProfile(profile: UserProfile): Observable<UserProfile> {
     return this.http.post<UserProfile>(

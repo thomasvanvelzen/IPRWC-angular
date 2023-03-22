@@ -4,7 +4,7 @@ import { User } from '../typings/user.type';
 import { HttpClient } from '@angular/common/http';
 import decode from 'jwt-decode';
 import { environment } from 'src/environments/environment';
-import { firstValueFrom } from 'rxjs';
+import { BehaviorSubject, Observable, firstValueFrom } from 'rxjs';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -12,8 +12,12 @@ import { TokenService } from './token.service';
 })
 @Injectable()
 export class GlobalService implements OnInit {
-  public user!: User;
-  public products: Product[] = [];
+  public user$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(
+    null
+  );
+  public products$: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(
+    []
+  );
 
   constructor(private http: HttpClient) {
     this.loadProducts();
@@ -24,11 +28,27 @@ export class GlobalService implements OnInit {
   private async loadProducts() {
     this.http.get<Product[]>(`${environment.apiURL}/product/all`).subscribe(
       (products) => {
-        this.products = products;
+        this.products$.next(products);
       },
       (err) => {
         console.error(err);
       }
     );
+  }
+
+  public get products() {
+    return this.products$.getValue();
+  }
+
+  public set products(products: Product[]) {
+    this.products$.next(products);
+  }
+
+  public get user() {
+    return this.user$.getValue() as User;
+  }
+
+  public set user(user: User) {
+    this.user$.next(user);
   }
 }
