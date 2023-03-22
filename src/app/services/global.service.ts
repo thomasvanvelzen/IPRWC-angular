@@ -25,7 +25,7 @@ export class GlobalService implements OnInit {
 
   ngOnInit(): void {}
 
-  private async loadProducts() {
+  public async loadProducts() {
     this.http.get<Product[]>(`${environment.apiURL}/product/all`).subscribe(
       (products) => {
         this.products$.next(products);
