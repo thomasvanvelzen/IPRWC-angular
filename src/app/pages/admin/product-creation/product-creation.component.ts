@@ -25,4 +25,12 @@ export class ProductCreationComponent {
   public postProduct() {
     this.productCreationService.postProduct(this.product);
   }
+
+  public get error() {
+    return this.productCreationService.error;
+  }
+
+  public get success() {
+    return this.productCreationService.success;
+  }
 }
